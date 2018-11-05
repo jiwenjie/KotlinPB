@@ -22,33 +22,33 @@ abstract class BaseMvpPresenter<V : BaseMvpViewImpl>(view: V) : LifecycleObserve
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_START)
-    protected fun onStart() {
+    protected open fun onStart() {
         Log.d(tag, "onStart")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_RESUME)
-    protected fun onResume() {
+    protected open fun onResume() {
         Log.d(tag, "onResume")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_PAUSE)
-    protected fun onPause() {
+    protected open fun onPause() {
         Log.d(tag, "onPause")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_STOP)
-    protected fun onStop() {
+    protected open fun onStop() {
         Log.d(tag, "onStop")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_DESTROY)
-    protected fun onDestroy() {
+    protected open fun onDestroy() {
         this.mView = null
         Log.d(tag, "onDestroy")
     }
 
     @OnLifecycleEvent(Lifecycle.Event.ON_ANY)
-    protected fun onLifeChange(owner: LifecycleOwner, event: Lifecycle.Event) {
+    protected open fun onLifeChange(owner: LifecycleOwner, event: Lifecycle.Event) {
         Log.d(tag, "onLifeChange: ($owner, $event)")
     }
 }

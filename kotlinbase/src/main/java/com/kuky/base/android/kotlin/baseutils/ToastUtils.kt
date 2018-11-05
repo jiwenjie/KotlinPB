@@ -15,9 +15,9 @@ object ToastUtils {
 
     @SuppressLint("ShowToast")
     @JvmStatic
-    fun showToast(context: Context, msg: String, length: Int = Toast.LENGTH_SHORT,
-                  toastView: View? = null, gravity: Int = Gravity.BOTTOM,
-                  xOffset: Int = 0, yOffset: Int = 0) {
+    fun showToast(context: Context, msg: String,
+                  length: Int = Toast.LENGTH_SHORT,
+                  toastView: View? = null) {
         if (mToast == null) {
             mToast = Toast.makeText(context, msg, length)
         } else {
@@ -27,7 +27,6 @@ object ToastUtils {
         if (toastView != null)
             mToast!!.view = toastView
 
-        mToast!!.setGravity(gravity, xOffset, yOffset)
         mToast!!.show()
     }
 
