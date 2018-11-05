@@ -7,15 +7,15 @@ package com.kuky.base.kotlin.demo.entity
 data class NewsEntity(
     val error_code: Int,
     val reason: String,
-    val result: Result
+    val result: NewsResult
 )
 
-data class Result(
-    val `data`: List<Data>,
+data class NewsResult(
+    val `data`: List<NewsData>,
     val stat: String
 )
 
-data class Data(
+data class NewsData(
     val author_name: String,
     val category: String,
     val date: String,

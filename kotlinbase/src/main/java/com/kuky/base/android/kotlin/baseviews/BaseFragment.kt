@@ -8,7 +8,7 @@ import android.view.ViewGroup
 
 /**
  * @author kuky.
- * @description fragment 基类，懒加载 fragment 基类同，初始化时候通过 by lazy 进行初始化即可
+ * @description fragment 基类
  */
 abstract class BaseFragment : Fragment() {
 
