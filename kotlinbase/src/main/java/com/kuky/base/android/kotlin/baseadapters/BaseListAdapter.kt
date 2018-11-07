@@ -15,6 +15,13 @@ abstract class BaseListAdapter<T : Any, VH : BaseListAdapter.BaseListHolder>(con
     private var mDataList = dataList
     private val mInflater = LayoutInflater.from(mContext)
 
+    fun updateDataList(dataList: ArrayList<T>?) {
+        this.mDataList = dataList
+        notifyDataSetChanged()
+    }
+
+    fun getAdapterDataList(): ArrayList<T> = mDataList ?: ArrayList()
+
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         var copyConvert = convertView
         val holder: VH

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">KotlinPB</string>
+    <string name="send_event">Send Event</string>
 </resources>

@@ -6,7 +6,7 @@
     android:layout_height="wrap_content"
     android:gravity="center"
     android:padding="12dp"
-    android:textColor="@color/colorDracula"
+    android:textColor="@android:color/holo_red_dark"
     tools:text="RxBusActivity">
 
 </TextView>
