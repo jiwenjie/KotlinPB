@@ -33,7 +33,7 @@ object AssetsLoader {
             inputReader = InputStreamReader(inputStream!!)
             bufferedReader = BufferedReader(inputReader)
 
-            var line: String
+            var line: String?
             do {
                 line = bufferedReader.readLine()
                 if (line != null) result.append(line) else break
