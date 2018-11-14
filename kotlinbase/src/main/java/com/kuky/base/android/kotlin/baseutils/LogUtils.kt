@@ -24,37 +24,57 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun e(msg: String) {
+    fun e(msg: Any) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        Log.e(className, createLog(msg))
+        when (msg) {
+            is Int, Long, Float, Double, Boolean -> Log.e(className, createLog("$msg"))
+            is String -> Log.e(className, createLog(msg))
+            else -> Log.e(className, createLog(msg.toString()))
+        }
     }
 
     @JvmStatic
-    fun w(msg: String) {
+    fun w(msg: Any) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        Log.w(className, createLog(msg))
+        when (msg) {
+            is Int, Long, Float, Double, Boolean -> Log.w(className, createLog("$msg"))
+            is String -> Log.w(className, createLog(msg))
+            else -> Log.w(className, createLog(msg.toString()))
+        }
     }
 
     @JvmStatic
-    fun i(msg: String) {
+    fun i(msg: Any) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        Log.i(className, createLog(msg))
+        when (msg) {
+            is Int, Long, Float, Double, Boolean -> Log.i(className, createLog("$msg"))
+            is String -> Log.i(className, createLog(msg))
+            else -> Log.i(className, createLog(msg.toString()))
+        }
     }
 
     @JvmStatic
-    fun d(msg: String) {
+    fun d(msg: Any) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        Log.d(className, createLog(msg))
+        when (msg) {
+            is Int, Long, Float, Double, Boolean -> Log.d(className, createLog("$msg"))
+            is String -> Log.d(className, createLog(msg))
+            else -> Log.d(className, createLog(msg.toString()))
+        }
     }
 
     @JvmStatic
-    fun v(msg: String) {
+    fun v(msg: Any) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        Log.v(className, createLog(msg))
+        when (msg) {
+            is Int, Long, Float, Double, Boolean -> Log.v(className, createLog("$msg"))
+            is String -> Log.v(className, createLog(msg))
+            else -> Log.v(className, createLog(msg.toString()))
+        }
     }
 }
