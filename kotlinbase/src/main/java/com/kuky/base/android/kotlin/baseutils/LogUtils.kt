@@ -24,10 +24,12 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun e(msg: Any) {
+    fun e(msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        when (msg) {
+        if (msg == null)
+            Log.e(className, createLog("null"))
+        else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.e(className, createLog("$msg"))
             is String -> Log.e(className, createLog(msg))
             else -> Log.e(className, createLog(msg.toString()))
@@ -35,10 +37,12 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun w(msg: Any) {
+    fun w(msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        when (msg) {
+        if (msg == null)
+            Log.w(className, createLog("null"))
+        else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.w(className, createLog("$msg"))
             is String -> Log.w(className, createLog(msg))
             else -> Log.w(className, createLog(msg.toString()))
@@ -46,10 +50,12 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun i(msg: Any) {
+    fun i(msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        when (msg) {
+        if (msg == null)
+            Log.i(className, createLog("null"))
+        else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.i(className, createLog("$msg"))
             is String -> Log.i(className, createLog(msg))
             else -> Log.i(className, createLog(msg.toString()))
@@ -57,10 +63,12 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun d(msg: Any) {
+    fun d(msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        when (msg) {
+        if (msg == null)
+            Log.d(className, createLog("null"))
+        else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.d(className, createLog("$msg"))
             is String -> Log.d(className, createLog(msg))
             else -> Log.d(className, createLog(msg.toString()))
@@ -68,10 +76,12 @@ object LogUtils {
     }
 
     @JvmStatic
-    fun v(msg: Any) {
+    fun v(msg: Any?) {
         if (!isDebuggable()) return
         getMethodName(Throwable())
-        when (msg) {
+        if (msg == null)
+            Log.v(className, createLog("null"))
+        else when (msg) {
             is Int, Long, Float, Double, Boolean -> Log.v(className, createLog("$msg"))
             is String -> Log.v(className, createLog(msg))
             else -> Log.v(className, createLog(msg.toString()))

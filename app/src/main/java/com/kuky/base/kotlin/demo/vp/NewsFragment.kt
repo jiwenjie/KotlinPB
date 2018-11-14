@@ -91,7 +91,7 @@ class NewsFragment : BaseFragment() {
                     if (refreshable) ToastUtils.showToast(activity!!, "更新数据成功")
                     news_refresh.isRefreshing = false
                 }
-            }, { t -> LogUtils.e(t.message!!) })
+            }, { t -> LogUtils.e(t.message) })
     }
 
     override fun setListener() {

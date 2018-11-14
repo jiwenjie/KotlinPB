@@ -64,7 +64,7 @@ class MainActivity : BaseActivity() {
                         orderList.forEach { finalItems.add(mActivities[it]) }
                         mAdapter.updateDataList(finalItems)
                     }
-                }, Consumer { t -> LogUtils.e(t.message!!) })
+                }, Consumer { t -> LogUtils.e(t.message) })
 
         /* or you can register an bus like this if you want switch thread by yourself */
 //        RxBus.mBus.register(this@MainActivity,
