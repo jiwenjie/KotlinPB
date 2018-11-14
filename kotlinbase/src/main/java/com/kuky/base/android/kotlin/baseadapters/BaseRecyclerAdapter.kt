@@ -31,11 +31,11 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     private var mOnItemClickListener: OnItemClickListener? = null
     private var mOnItemLongClickListener: OnItemLongClickListener? = null
 
-    fun setOnItemClickListener(listener: OnItemClickListener) {
+    fun setOnItemClickListener(listener: OnItemClickListener?) {
         this.mOnItemClickListener = listener
     }
 
-    fun setOnItemLongClickListener(listener: OnItemLongClickListener) {
+    fun setOnItemLongClickListener(listener: OnItemLongClickListener?) {
         this.mOnItemLongClickListener = listener
     }
 
