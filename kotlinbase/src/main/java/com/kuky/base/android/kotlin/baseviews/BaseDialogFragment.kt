@@ -35,10 +35,12 @@ abstract class BaseDialogFragment : DialogFragment() {
         return inflater.inflate(getLayoutId(), container, false)
     }
 
-    /* 传递宽、高、位置、动画类型参数 */
-    fun putExtraParam(widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-                      heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-                      gravity: Int = Gravity.CENTER, anim: Int = 0) {
+    /* put your height, width, gravity, animation param here */
+    fun putExtraParam(
+        widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+        heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+        gravity: Int = Gravity.CENTER, anim: Int = 0
+    ) {
         val bundle = Bundle()
         bundle.putInt(DIALOG_WIDTH_TYPE, widthType)
         bundle.putInt(DIALOG_HEIGHT_TYPE, heightType)
@@ -50,7 +52,7 @@ abstract class BaseDialogFragment : DialogFragment() {
     override fun onStart() {
         super.onStart()
 
-        /* 设置 dialog 属性*/
+        /* set dialog param */
         dialog.window!!.setBackgroundDrawable(ColorDrawable(0))
         val attrs = dialog.window!!.attributes
         attrs.width = mWidth

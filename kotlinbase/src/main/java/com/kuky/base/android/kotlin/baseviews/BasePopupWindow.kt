@@ -15,9 +15,11 @@ import com.kuky.base.android.kotlin.R
  * @description popupWindow 基类，推荐使用
  * @see BaseDialogFragment 作为 popupWindow 基类
  */
-abstract class BasePopupWindow(context: Context, animStyle: Int = R.style.AnimBottomIn,
-                               width: Int = WindowManager.LayoutParams.MATCH_PARENT,
-                               height: Int = WindowManager.LayoutParams.WRAP_CONTENT) : PopupWindow(context) {
+abstract class BasePopupWindow(
+    context: Context, animStyle: Int = R.style.AnimBottomIn,
+    width: Int = WindowManager.LayoutParams.MATCH_PARENT,
+    height: Int = WindowManager.LayoutParams.WRAP_CONTENT
+) : PopupWindow(context) {
 
     protected val mContext = context
     protected val mPopupView: View = LayoutInflater.from(mContext).inflate(this.getLayoutId(), null, false)
@@ -58,9 +60,8 @@ abstract class BasePopupWindow(context: Context, animStyle: Int = R.style.AnimBo
         super.showAtLocation(parent, gravity, x, y)
     }
 
-    fun showAtLocation(parent: View?) {
+    fun showAtLocation(parent: View?) =
         this.showAtLocation(parent, Gravity.BOTTOM or Gravity.CENTER_HORIZONTAL, 0, 0)
-    }
 
     private fun setBackgroundAlpha(alpha: Float) {
         val lp = (mContext as Activity).window.attributes

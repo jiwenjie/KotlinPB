@@ -47,7 +47,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     protected open fun startActivity(clazz: Class<*>) = startActivity(Intent(this, clazz))
 
-    protected open fun transparentStatusBar() {
+    open fun transparentStatusBar() {
         window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
                 View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN or
@@ -57,7 +57,7 @@ abstract class BaseActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    protected open fun fullScreen() {
+    open fun fullScreen() {
         window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE or
                 View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION or
@@ -70,7 +70,8 @@ abstract class BaseActivity : AppCompatActivity() {
         supportActionBar?.hide()
     }
 
-    protected open fun onRuntimePermissionsAsk(permissions: kotlin.Array<String>, listener: PermissionListener) {
+    /* for permissions request */
+    open fun onRuntimePermissionsAsk(permissions: kotlin.Array<String>, listener: PermissionListener) {
         this.mPermissionListener = listener
         val activity = ActivityStackManager.getTopActivity()
         val deniedPermissions: MutableList<String> = mutableListOf()
