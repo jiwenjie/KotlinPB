@@ -1,5 +1,6 @@
 package com.kuky.base.android.kotlin.baseviews
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
@@ -30,4 +31,6 @@ abstract class BaseFragment : Fragment() {
     protected open fun setListener() {}
 
     protected open fun handleRxBus() {}
+
+    fun startActivty(clazz: Class<*>) = activity!!.startActivity(Intent(activity, clazz))
 }

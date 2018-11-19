@@ -64,7 +64,7 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
         if (!isHeader(position) && !isFooter(position)) {
             val pos = position - getHeaderSize()
 
-            convertView(holder.itemView, mDataList!![pos])
+            convertView(holder.itemView, mDataList!![pos], pos)
 
             holder.itemView.setOnClickListener { v ->
                 mOnItemClickListener?.onItemClick(pos, v)
@@ -77,7 +77,8 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
         }
     }
 
-    abstract fun convertView(itemView: View, t: T)
+    /** position is the data position in list, not item position */
+    abstract fun convertView(itemView: View, t: T, position: Int)
 
     fun addHeader(header: View) {
         mHeaderViews.put(HEADER + getHeaderSize(), header)

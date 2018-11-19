@@ -1,9 +1,11 @@
 package com.kuky.base.kotlin.demo.vp
 
+import android.graphics.Color
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
 import android.text.TextUtils
 import android.view.View
+import android.widget.TextView
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.kuky.base.android.kotlin.RetrofitManager
@@ -40,10 +42,16 @@ class NewsFragment : BaseFragment() {
         mAdapter = object : BaseRecyclerAdapter<NewsData>(activity!!) {
             override fun getAdapterLayoutId(): Int = R.layout.recycler_news_item
 
-            override fun convertView(itemView: View, t: NewsData) {
+            override fun convertView(itemView: View, t: NewsData, position: Int) {
                 itemView.news_title.text = t.title
                 itemView.news_public_date.text = t.date
                 itemView.news_author_name.text = t.author_name
+
+                if (position == mSelectedPosition) {
+                    itemView.news_author_name.setTextColor(Color.RED)
+                } else {
+                    itemView.news_author_name.setTextColor(Color.GREEN)
+                }
 
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s))
                     Glide.with(activity!!)
@@ -64,6 +72,7 @@ class NewsFragment : BaseFragment() {
                         .into(itemView.thumbnail_pic_3)
             }
         }
+        mAdapter.updateSelectItem(0)
 
         news_list.layoutManager = LinearLayoutManager(activity!!, LinearLayoutManager.VERTICAL, false)
         news_list.adapter = mAdapter
