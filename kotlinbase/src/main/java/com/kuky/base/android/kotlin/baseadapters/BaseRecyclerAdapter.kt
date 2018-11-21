@@ -29,13 +29,13 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     protected var mSelectedPosition = -1
     private val mInflater = LayoutInflater.from(mContext)
     private var mOnItemClickListener: ((position: Int, view: View) -> Unit)? = null
-    private var mOnItemLongClickListener: ((position: Int, view: View) -> Boolean)? = null
+    private var mOnItemLongClickListener: ((position: Int, view: View) -> Unit)? = null
 
     fun setOnItemClickListener(listener: ((position: Int, view: View) -> Unit)?) {
         this.mOnItemClickListener = listener
     }
 
-    fun setOnItemLongClickListener(listener: ((position: Int, view: View) -> Boolean)?) {
+    fun setOnItemLongClickListener(listener: ((position: Int, view: View) -> Unit)?) {
         this.mOnItemLongClickListener = listener
     }
 
@@ -71,7 +71,8 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
             }
 
             holder.itemView.setOnLongClickListener { v ->
-                mOnItemLongClickListener?.invoke(pos, v)!!
+                mOnItemLongClickListener?.invoke(pos, v)
+                false
             }
         }
     }
