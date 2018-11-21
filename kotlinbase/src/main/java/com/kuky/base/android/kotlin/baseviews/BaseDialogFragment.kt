@@ -24,7 +24,7 @@ abstract class BaseDialogFragment : DialogFragment() {
 
         if (arguments != null) {
             mWidth = arguments!!.getInt(DIALOG_WIDTH_TYPE)
-            mHeight = arguments!!.getInt(DIALOG_WIDTH_TYPE)
+            mHeight = arguments!!.getInt(DIALOG_HEIGHT_TYPE)
             mGravity = arguments!!.getInt(DIALOG_GRAVITY)
             mAnimation = arguments!!.getInt(DIALOG_ANIMATION)
         }
