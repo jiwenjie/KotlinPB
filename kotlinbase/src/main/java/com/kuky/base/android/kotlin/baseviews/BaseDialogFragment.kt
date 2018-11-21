@@ -57,7 +57,7 @@ abstract class BaseDialogFragment : DialogFragment() {
         val attrs = dialog.window!!.attributes
         attrs.width = mWidth
         attrs.height = mHeight
-        attrs.gravity = Gravity.CENTER
+        attrs.gravity = mGravity
         dialog.window!!.attributes = attrs
     }
 
