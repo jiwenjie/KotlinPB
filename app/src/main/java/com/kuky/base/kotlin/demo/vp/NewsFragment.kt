@@ -46,6 +46,7 @@ class NewsFragment : BaseFragment() {
                 itemView.news_public_date.text = t.date
                 itemView.news_author_name.text = t.author_name
 
+                /* update selected position will works */
                 if (position == mSelectedPosition) {
                     itemView.news_author_name.setTextColor(Color.RED)
                 } else {
@@ -61,13 +62,13 @@ class NewsFragment : BaseFragment() {
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s02))
                     Glide.with(activity!!)
                         .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
-                        .load(t.thumbnail_pic_s)
+                        .load(t.thumbnail_pic_s02)
                         .into(itemView.thumbnail_pic_2)
 
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s03))
                     Glide.with(activity!!)
                         .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
-                        .load(t.thumbnail_pic_s)
+                        .load(t.thumbnail_pic_s03)
                         .into(itemView.thumbnail_pic_3)
             }
         }
@@ -104,6 +105,8 @@ class NewsFragment : BaseFragment() {
 
     override fun setListener() {
         news_refresh.setOnRefreshListener { requestNews(mType!!, true) }
+
+        mAdapter.setOnItemClickListener { position, _ -> ToastUtils.showToast(activity!!, "Click $position") }
     }
 
     override fun onDestroy() {
