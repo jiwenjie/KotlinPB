@@ -91,9 +91,10 @@ abstract class BaseActivity : AppCompatActivity() {
         if (requestCode == 1) {
             val deniedPermissions: MutableList<String> = mutableListOf()
             if (grantResults.isNotEmpty()) {
-                grantResults
-                    .filter { it != PackageManager.PERMISSION_GRANTED }
-                    .mapTo(deniedPermissions) { permissions[it] }
+                for (i in grantResults.indices) {
+                    if (grantResults[i] != PackageManager.PERMISSION_GRANTED)
+                        deniedPermissions.add(permissions[i])
+                }
 
                 if (deniedPermissions.isEmpty())
                     mPermissionListener!!.onGranted()
