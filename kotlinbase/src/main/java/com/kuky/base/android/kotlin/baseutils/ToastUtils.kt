@@ -12,22 +12,31 @@ import android.widget.Toast
  */
 object ToastUtils {
     private var mToast: Toast? = null
+    private var mViewToast: Toast? = null
 
     @SuppressLint("ShowToast")
     @JvmStatic
     fun showToast(context: Context, msg: String,
-                  length: Int = Toast.LENGTH_SHORT,
-                  toastView: View? = null) {
+                  length: Int = Toast.LENGTH_SHORT) {
         if (mToast == null) {
             mToast = Toast.makeText(context, msg, length)
         } else {
             mToast!!.setText(msg)
         }
 
-        if (toastView != null)
-            mToast!!.view = toastView
-
         mToast!!.show()
+    }
+
+    @JvmStatic
+    fun showCustomViewToast(context: Context, view: View,
+                            gravity: Int = Gravity.CENTER,
+                            offsetX: Int = 0, offsetY: Int = 0) {
+        if (mViewToast == null) {
+            mViewToast = Toast(context)
+        }
+        mViewToast!!.view = view
+        mViewToast!!.setGravity(gravity, offsetX, offsetY)
+        mViewToast!!.show()
     }
 
     @JvmStatic
@@ -35,6 +44,11 @@ object ToastUtils {
         if (mToast != null) {
             mToast!!.cancel()
             mToast = null
+        }
+
+        if (mViewToast != null) {
+            mViewToast!!.cancel()
+            mViewToast = null
         }
     }
 }

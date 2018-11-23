@@ -77,8 +77,8 @@ abstract class BaseActivity : AppCompatActivity() {
         val deniedPermissions: MutableList<String> = mutableListOf()
 
         permissions
-            .filterNot { ContextCompat.checkSelfPermission(activity!!, it) == PackageManager.PERMISSION_GRANTED }
-            .forEach { deniedPermissions.add(it) }
+                .filterNot { ContextCompat.checkSelfPermission(activity!!, it) == PackageManager.PERMISSION_GRANTED }
+                .forEach { deniedPermissions.add(it) }
 
         if (deniedPermissions.isEmpty())
             mPermissionListener!!.onGranted()
