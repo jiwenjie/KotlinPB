@@ -11,6 +11,8 @@ final String rx_java_version = "2.1.1"
 final String retrofit_version = "2.3.0"
 final String logging_version = "3.9.0"
 final String leak_canary_version = "1.6.1"
+final String paging_version = "1.0.1"
+final String lifecycle_version = "1.1.1"
 
 android {
     compileSdkVersion 27
@@ -48,6 +50,9 @@ dependencies {
     api "com.android.support:gridlayout-v7:$support_design_version"
     api "com.android.support.constraint:constraint-layout:$constraint_version"
     api "de.hdodenhof:circleimageview:$circle_image_version"
+
+    api "android.arch.paging:runtime:$paging_version"
+    api "android.arch.lifecycle:extensions:$lifecycle_version"
 
     api "androidx.core:core-ktx:$ktx_version"
     api "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"

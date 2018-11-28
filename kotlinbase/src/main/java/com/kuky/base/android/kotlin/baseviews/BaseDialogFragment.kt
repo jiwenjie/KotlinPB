@@ -17,6 +17,11 @@ abstract class BaseDialogFragment : DialogFragment() {
     private var mHeight: Int = WindowManager.LayoutParams.WRAP_CONTENT
     private var mGravity: Int = Gravity.CENTER
     private var mAnimation: Int = 0
+    private var mOnDismissListener: (() -> Unit)? = null
+
+    fun setOnDismissListener(l: (() -> Unit)?) {
+        this.mOnDismissListener = l
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
@@ -47,6 +52,11 @@ abstract class BaseDialogFragment : DialogFragment() {
         bundle.putInt(DIALOG_GRAVITY, gravity)
         bundle.putInt(DIALOG_ANIMATION, anim)
         this.arguments = bundle
+    }
+
+    override fun dismiss() {
+        super.dismiss()
+        mOnDismissListener?.invoke()
     }
 
     override fun onStart() {

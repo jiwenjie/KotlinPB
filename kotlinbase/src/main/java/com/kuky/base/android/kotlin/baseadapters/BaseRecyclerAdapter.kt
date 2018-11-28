@@ -24,7 +24,7 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
 
     private val mHeaderViews: SparseArray<View> = SparseArray()
     private val mFooterViews: SparseArray<View> = SparseArray()
-    protected var mContext = context
+    protected val mContext = context
     protected var mDataList = dataList
     protected var mSelectedPosition = -1
     private val mInflater = LayoutInflater.from(mContext)
