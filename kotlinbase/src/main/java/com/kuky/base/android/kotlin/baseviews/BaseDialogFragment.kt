@@ -54,8 +54,8 @@ abstract class BaseDialogFragment : DialogFragment() {
         this.arguments = bundle
     }
 
-    override fun dismiss() {
-        super.dismiss()
+    override fun onDestroy() {
+        super.onDestroy()
         mOnDismissListener?.invoke()
     }
 
