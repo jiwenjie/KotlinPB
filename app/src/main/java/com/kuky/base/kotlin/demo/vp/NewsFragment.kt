@@ -39,7 +39,7 @@ class NewsFragment : BaseFragment() {
 
         /* BaseRecyclerAdapter Demo */
         mAdapter = object : BaseRecyclerAdapter<NewsData>(activity!!) {
-            override fun getAdapterLayoutId(): Int = R.layout.recycler_news_item
+            override fun getAdapterLayoutId(viewType: Int): Int = R.layout.recycler_news_item
 
             override fun convertView(itemView: View, t: NewsData, position: Int) {
                 itemView.news_title.text = t.title
