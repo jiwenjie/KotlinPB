@@ -14,7 +14,9 @@ import android.view.ViewGroup
  * @description RecyclerView 通用适配器
  *
  * @see BaseRecyclerAdapter.addHeader 支持添加多个头部
+ * @see BaseRecyclerAdapter.addHeaderView 支持添加多个头部
  * @see BaseRecyclerAdapter.addFooter 支持添加多个尾部
+ * @see BaseRecyclerAdapter.addFooterView 支持添加多个尾部
  * @see BaseRecyclerAdapter.setOnItemClickListener 支持点击事件
  * @see BaseRecyclerAdapter.setOnItemLongClickListener 支持长按事件
  * @see BaseRecyclerAdapter.getConvertType 支持多布局
@@ -80,16 +82,62 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     /** position is the data position in list, not item position */
     abstract fun convertView(itemView: View, t: T, position: Int)
 
+    @Deprecated("we suggest to use addHeadView")
     fun addHeader(header: View) {
         mHeaderViews.put(HEADER + getHeaderSize(), header)
         notifyItemInserted(getHeaderSize())
     }
 
+    @Deprecated("we suggest to use addFooterView")
     fun addFooter(footer: View) {
         mFooterViews.put(FOOTER + getFooterSize(), footer)
         var pos = if (mDataList == null) getFooterSize() else getFooterSize() + getDataSize() - 1
         if (haveHeader()) pos += getHeaderSize()
         notifyItemInserted(pos)
+    }
+
+    /**
+     * return the key of view in SparseArray, save it and you will use it in
+     * @see removeHeaderView,
+     * or you can call this by removeHeaderView(view.tag as Int)
+     */
+    fun addHeaderView(header: View): Int {
+        val headKey = HEADER + getHeaderSize()
+        mHeaderViews.put(headKey, header)
+        header.tag = headKey
+        notifyItemInserted(getHeaderSize())
+        return headKey
+    }
+
+    /**
+     * tag is returned by addHeaderView or (yourHeaderView.tag as Int)
+     */
+    fun removeHeaderView(tag: Int) {
+        mHeaderViews.remove(tag)
+        notifyDataSetChanged()
+    }
+
+    /**
+     * return the key of view in SparseArray, save it and you will use it in
+     * @see removeFooterView,
+     * or you can call this by removeFooterView(view.tag as Int)
+     */
+    fun addFooterView(footer: View): Int {
+        val footKey = FOOTER + getFooterSize()
+        mFooterViews.put(footKey, footer)
+        footer.tag = footKey
+        var pos = if (mDataList == null) getFooterSize() else getFooterSize() + getDataSize() - 1
+        if (haveHeader()) pos += getHeaderSize()
+        notifyItemInserted(pos)
+        return footKey
+    }
+
+    /**
+     * tag is returned by addFooterView or (yourFooterView.tag as Int)
+     */
+    fun removeFooterView(tag: Int) {
+        mFooterViews.remove(tag)
+        notifyDataSetChanged()
     }
 
     override fun getItemViewType(position: Int): Int =
@@ -115,6 +163,7 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
 
     private fun isFooter(position: Int): Boolean = haveFooter() && position >= getHeaderSize() + getDataSize()
 
+    /** return the position of item in recyclerView include the headerViews and footerViews */
     private fun getRealPosition(viewHolder: RecyclerView.ViewHolder): Int = viewHolder.layoutPosition
 
     fun getAdapterData(): ArrayList<T>? = mDataList
@@ -189,14 +238,6 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
         val lp = holder.itemView.layoutParams
         if (lp is StaggeredGridLayoutManager.LayoutParams)
             lp.isFullSpan = isHeader(getRealPosition(holder)) || isFooter(getRealPosition(holder))
-    }
-
-    interface OnItemClickListener {
-        fun onItemClick(position: Int, view: View)
-    }
-
-    interface OnItemLongClickListener {
-        fun onItemLongClick(position: Int, view: View)
     }
 
     class BaseRecyclerHolder(itemView: View) : RecyclerView.ViewHolder(itemView)
