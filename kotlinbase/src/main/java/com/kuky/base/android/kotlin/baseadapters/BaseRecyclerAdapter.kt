@@ -56,9 +56,9 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
         if (haveHeader() && mHeaderViews.get(viewType) != null) BaseRecyclerHolder(mHeaderViews.get(viewType))
         else if (haveFooter() && mFooterViews.get(viewType) != null) BaseRecyclerHolder(mFooterViews.get(viewType))
-        else BaseRecyclerHolder(mInflater.inflate(getAdapterLayoutId(), parent, false))
+        else BaseRecyclerHolder(mInflater.inflate(getAdapterLayoutId(viewType), parent, false))
 
-    abstract fun getAdapterLayoutId(): Int
+    abstract fun getAdapterLayoutId(viewType: Int): Int
 
     override fun getItemCount(): Int = getHeaderSize() + getDataSize() + getFooterSize()
 
