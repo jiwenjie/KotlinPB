@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/create_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/insert_data"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <EditText
+        android:id="@+id/create_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/input_name_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/create_title"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/create_user_name" />
+
+    <EditText
+        android:id="@+id/create_user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/input_phone_hint"
+        android:inputType="phone"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/create_user_name"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/create_user_phone" />
+
+    <EditText
+        android:id="@+id/create_user_province"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/input_province_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/create_user_phone"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/create_user_province" />
+
+    <EditText
+        android:id="@+id/create_user_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/input_street_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/create_user_province"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/create_user_street" />
+
+    <TextView
+        android:id="@+id/create_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/cancel"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toStartOf="@id/create_ok"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/create_user_street" />
+
+    <View
+        android:layout_width="0.1dp"
+        android:layout_height="20dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@id/create_cancel"
+        app:layout_constraintEnd_toStartOf="@id/create_ok"
+        app:layout_constraintStart_toEndOf="@id/create_cancel"
+        app:layout_constraintTop_toTopOf="@id/create_cancel" />
+
+    <TextView
+        android:id="@+id/create_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/create_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/create_cancel" />
+
+</android.support.constraint.ConstraintLayout>

@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/b"
+    tools:context=".room.RoomActivity">
+
+    <android.support.v7.widget.Toolbar
+        android:id="@+id/room_tool_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:titleTextColor="@android:color/holo_red_dark" />
+
+    <Button
+        android:id="@+id/insert_user"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:text="@string/insert"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintEnd_toStartOf="@id/update_user"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/room_tool_bar" />
+
+    <Button
+        android:id="@+id/update_user"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/update"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/insert_user"
+        app:layout_constraintEnd_toStartOf="@id/delete_user"
+        app:layout_constraintStart_toEndOf="@id/insert_user" />
+
+    <Button
+        android:id="@+id/delete_user"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/delete"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/insert_user"
+        app:layout_constraintEnd_toStartOf="@id/query_user"
+        app:layout_constraintStart_toEndOf="@id/update_user" />
+
+    <Button
+        android:id="@+id/query_user"
+        style="@style/Base.Widget.AppCompat.Button.Borderless.Colored"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/query"
+        android:textAllCaps="false"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/insert_user"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/delete_user" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_marginTop="20dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="none"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/insert_user">
+
+        <TextView
+            android:id="@+id/operate_result"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="8dp"
+            android:textColor="@android:color/holo_red_dark"
+            android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            tools:text="user{ name=A }" />
+    </ScrollView>
+</android.support.constraint.ConstraintLayout>

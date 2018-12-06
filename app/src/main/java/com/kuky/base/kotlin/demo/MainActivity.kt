@@ -21,9 +21,15 @@ import kotlin.random.Random
 /* BaseActivity Demo */
 class MainActivity : BaseActivity() {
 
-    private val mActivities = arrayListOf("mvp.MvpActivity", "rx.RxBusActivity", "vp.VpActivity",
-            "empty.NonActivity", "empty.RxResultShowActivity", "empty.JustTestActivity",
-            "empty.NotClickActivity", "empty.EmptyActivity")
+    private val mActivities = arrayListOf(
+        "mvp.MvpActivity",
+        "rx.RxBusActivity",
+        "vp.VpActivity",
+        "room.RoomActivity",
+        "empty.NonActivity",
+        "empty.NotClickActivity",
+        "empty.EmptyActivity"
+    )
 
     private lateinit var mAdapter: ActivityAdapter
 
@@ -41,7 +47,11 @@ class MainActivity : BaseActivity() {
                         val clazz = Class.forName("$packageName.${mAdapter.getAdapterDataList()[position]}")
                         startActivity(clazz.newInstance()::class.java)
                     } catch (e: ActivityNotFoundException) {
-                        ToastUtils.showToast(this@MainActivity, "Activity Not Found! and not click Activities below empty package")
+                        ToastUtils.showToast(
+                            this@MainActivity, "Activity Not Found! and not click Activities below empty package"
+                        )
+                    } catch (e: ClassNotFoundException) {
+                        LogUtils.e("Class not found")
                     }
                 }
     }
@@ -49,22 +59,22 @@ class MainActivity : BaseActivity() {
     override fun handleRxBus() {
         /* register an RxBus instance */
         RxBus.mBus.register(this@MainActivity, RxBusActivity.OrderChangeEvent::class.java,
-                Consumer { t ->
-                    if (t.changeOrder) {
-                        val orderList = ArrayList<Int>()
-                        val finalItems = ArrayList<String>()
+            Consumer { t ->
+                if (t.changeOrder) {
+                    val orderList = ArrayList<Int>()
+                    val finalItems = ArrayList<String>()
 
-                        do {
-                            val random = Random(System.currentTimeMillis()).nextInt(mActivities.size)
-                            orderList.apply {
-                                if (!contains(random)) add(random)
-                            }
-                        } while (orderList.size < mActivities.size)
+                    do {
+                        val random = Random(System.currentTimeMillis()).nextInt(mActivities.size)
+                        orderList.apply {
+                            if (!contains(random)) add(random)
+                        }
+                    } while (orderList.size < mActivities.size)
 
-                        orderList.forEach { finalItems.add(mActivities[it]) }
-                        mAdapter.updateDataList(finalItems)
-                    }
-                }, Consumer { t -> LogUtils.e(t.message) })
+                    orderList.forEach { finalItems.add(mActivities[it]) }
+                    mAdapter.updateDataList(finalItems)
+                }
+            }, Consumer { t -> LogUtils.e(t.message) })
 
         /* or you can register an bus like this if you want switch thread by yourself */
 //        RxBus.mBus.register(this@MainActivity,
@@ -82,7 +92,7 @@ class MainActivity : BaseActivity() {
 
     /* ListView Adapter Demo */
     class ActivityAdapter(context: Context, activities: ArrayList<String>? = null) :
-            BaseListAdapter<String, ActivityHolder>(context, activities) {
+        BaseListAdapter<String, ActivityHolder>(context, activities) {
 
         override fun createViewHolder(itemView: View): ActivityHolder {
             val holder = ActivityHolder()
