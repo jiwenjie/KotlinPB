@@ -20,6 +20,7 @@ import kotlinx.android.synthetic.main.dialog_create_user.view.*
 import kotlinx.android.synthetic.main.dialog_delete_user.view.*
 import kotlinx.android.synthetic.main.dialog_query_user.view.*
 import kotlinx.android.synthetic.main.dialog_update_user.view.*
+import java.util.*
 
 class RoomActivity : BaseActivity() {
     private lateinit var mCreateDialogView: View
@@ -43,8 +44,8 @@ class RoomActivity : BaseActivity() {
 
     private fun initAlertDialog(view: View): AlertDialog {
         return AlertDialog.Builder(this@RoomActivity)
-            .setView(view)
-            .setCancelable(false).create()
+                .setView(view)
+                .setCancelable(false).create()
     }
 
     override fun getLayoutId(): Int = R.layout.activity_room
@@ -88,48 +89,48 @@ class RoomActivity : BaseActivity() {
 //            DatabaseUtils.mUserRepoDao.createUserRepoJoin(userRepoJoin3)
 //            DatabaseUtils.mUserRepoDao.createUserRepoJoin(userRepoJoin4)
         }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { }
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { }
 
         DatabaseUtils.mRepoDao
-            .getAllRepos()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t ->
-                val sb = StringBuffer().append("\n")
-                t.forEach { sb.append(it.toString()).append("\n") }
-                LogUtils.e(sb)
-            }
+                .getAllRepos()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { t ->
+                    val sb = StringBuffer().append("\n")
+                    t.forEach { sb.append(it.toString()).append("\n") }
+                    LogUtils.e(sb)
+                }
 
         DatabaseUtils.mUserRepoDao
-            .getAllUserRepoJoin()
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t ->
-                val sb = StringBuffer().append("\n")
-                t.forEach { sb.append(it.toString()).append("\n") }
-                LogUtils.e(sb)
-            }
+                .getAllUserRepoJoin()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { t ->
+                    val sb = StringBuffer().append("\n")
+                    t.forEach { sb.append(it.toString()).append("\n") }
+                    LogUtils.e(sb)
+                }
 
         DatabaseUtils.mUserRepoDao
-            .getReposForUser(2)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t ->
-                val sb = StringBuffer().append("\n").append("repos for user 2:\n")
-                t.forEach { sb.append(it.toString()).append("\n") }
-                LogUtils.e(sb)
-            }
+                .getReposForUser(2)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { t ->
+                    val sb = StringBuffer().append("\n").append("repos for user 2:\n")
+                    t.forEach { sb.append(it.toString()).append("\n") }
+                    LogUtils.e(sb)
+                }
 
         DatabaseUtils.mUserRepoDao
-            .getUsersForRepo(1)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe { t ->
-                val sb = StringBuffer().append("\n").append("users for repo 1:\n")
-                t.forEach { sb.append(it.toString()).append("\n") }
-                LogUtils.e(sb)
-            }
+                .getUsersForRepo(1)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe { t ->
+                    val sb = StringBuffer().append("\n").append("users for repo 1:\n")
+                    t.forEach { sb.append(it.toString()).append("\n") }
+                    LogUtils.e(sb)
+                }
     }
 
     override fun setListener() {
@@ -155,16 +156,16 @@ class RoomActivity : BaseActivity() {
                 ToastUtils.showToast(this@RoomActivity, "You need input all info above")
             } else {
                 Completable.create { t ->
-                    val user = User(userName = name, phoneNo = phone, address = Address(province, street))
+                    val user = User(userName = name, phoneNo = phone, address = Address(province, street), birth = Date())
                     val value = DatabaseUtils.mUserDao.createUser(user)
                     if (value > 0) t.onComplete()
                     else t.onError(IllegalStateException("Insert failed"))
                 }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({
-                        mCreateDialog.dismiss()
-                        ToastUtils.showToast(this@RoomActivity, "Insert succeed")
-                    }, { t -> ToastUtils.showToast(this@RoomActivity, t.message!!) })
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({
+                            mCreateDialog.dismiss()
+                            ToastUtils.showToast(this@RoomActivity, "Insert succeed")
+                        }, { t -> ToastUtils.showToast(this@RoomActivity, t.message!!) })
             }
         }
 
@@ -191,27 +192,27 @@ class RoomActivity : BaseActivity() {
                 ToastUtils.showToast(this@RoomActivity, "input the message what you want update")
             } else {
                 DatabaseUtils.mUserDao
-                    .getSingleUser(id.toLong())
-                    .flatMap { t ->
-                        if (name.isNotEmpty()) t.userName = name
-                        if (phone.isNotEmpty()) t.phoneNo = phone
-                        if (province.isNotEmpty()) t.address.province = province
-                        if (street.isNotEmpty()) t.address.street = street
-                        Single.just(DatabaseUtils.mUserDao.updateUser(t))
-                    }.subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe({ t ->
-                        if (t > 0) {
-                            mUpdateDialog.dismiss()
-                            ToastUtils.showToast(this@RoomActivity, "Update succeed")
-                        } else
-                            ToastUtils.showToast(this@RoomActivity, "Update failed")
-                    }, { t ->
-                        if (t is EmptyResultSetException) ToastUtils.showToast(
-                            this@RoomActivity,
-                            "this user not exists"
-                        )
-                    })
+                        .getSingleUser(id.toLong())
+                        .flatMap { t ->
+                            if (name.isNotEmpty()) t.userName = name
+                            if (phone.isNotEmpty()) t.phoneNo = phone
+                            if (province.isNotEmpty()) t.address.province = province
+                            if (street.isNotEmpty()) t.address.street = street
+                            Single.just(DatabaseUtils.mUserDao.updateUser(t))
+                        }.subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe({ t ->
+                            if (t > 0) {
+                                mUpdateDialog.dismiss()
+                                ToastUtils.showToast(this@RoomActivity, "Update succeed")
+                            } else
+                                ToastUtils.showToast(this@RoomActivity, "Update failed")
+                        }, { t ->
+                            if (t is EmptyResultSetException) ToastUtils.showToast(
+                                    this@RoomActivity,
+                                    "this user not exists"
+                            )
+                        })
             }
         }
 
@@ -233,19 +234,19 @@ class RoomActivity : BaseActivity() {
                     t.onError(IllegalArgumentException("id can't be empty"))
                 } else {
                     val value =
-                        if (mDeleteDialogView.delete_all.isChecked)
-                            DatabaseUtils.mUserDao.deleteAllUser()
-                        else
-                            DatabaseUtils.mUserDao.deleteSingleUser(id.toLong())
+                            if (mDeleteDialogView.delete_all.isChecked)
+                                DatabaseUtils.mUserDao.deleteAllUser()
+                            else
+                                DatabaseUtils.mUserDao.deleteSingleUser(id.toLong())
                     if (value <= 0) t.onError(IllegalStateException("this user not exists"))
                     else t.onComplete()
                 }
             }.subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    mDeleteDialog.dismiss()
-                    ToastUtils.showToast(this@RoomActivity, "delete succeed")
-                }, { t -> ToastUtils.showToast(this@RoomActivity, t.message!!) })
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe({
+                        mDeleteDialog.dismiss()
+                        ToastUtils.showToast(this@RoomActivity, "delete succeed")
+                    }, { t -> ToastUtils.showToast(this@RoomActivity, t.message!!) })
         }
 
         /** query user from database */
@@ -266,29 +267,29 @@ class RoomActivity : BaseActivity() {
             } else {
                 if (mQueryDialogView.query_all.isChecked)
                     DatabaseUtils.mUserDao
-                        .getAllUsers()
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe({ t ->
-                            mQueryDialog.dismiss()
-                            val sb = StringBuffer()
-                                .append("Totally find ${t.size} user${if (t.size > 1) "s" else ""}:\n\n")
-                            t.forEach { sb.append(it.toString().trim()).append("\n\n") }
-                            operate_result.text = sb.trim()
-                        }, { t -> LogUtils.e(t.message!!) })
-                else
-                    DatabaseUtils.mUserDao
-                        .getSingleUser(id.toLong())
-                        .subscribeOn(Schedulers.io())
-                        .observeOn(AndroidSchedulers.mainThread())
-                        .subscribe(
-                            { t ->
+                            .getAllUsers()
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe({ t ->
                                 mQueryDialog.dismiss()
                                 val sb = StringBuffer()
-                                    .append("Find user whose id = $id:\n\n")
-                                    .append(t.toString())
+                                        .append("Totally find ${t.size} user${if (t.size > 1) "s" else ""}:\n\n")
+                                t.forEach { sb.append(it.toString().trim()).append("\n\n") }
                                 operate_result.text = sb.trim()
-                            }, { t ->
+                            }, { t -> LogUtils.e(t.message!!) })
+                else
+                    DatabaseUtils.mUserDao
+                            .getSingleUser(id.toLong())
+                            .subscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .subscribe(
+                                    { t ->
+                                        mQueryDialog.dismiss()
+                                        val sb = StringBuffer()
+                                                .append("Find user whose id = $id:\n\n")
+                                                .append(t.toString())
+                                        operate_result.text = sb.trim()
+                                    }, { t ->
                                 if (t is EmptyResultSetException)
                                     ToastUtils.showToast(this@RoomActivity, "this user not exists")
                                 else

@@ -42,9 +42,9 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     /* put your height, width, gravity, animation param here */
     fun putExtraParam(
-        widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-        heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-        gravity: Int = Gravity.CENTER, anim: Int = 0
+            widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+            heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+            gravity: Int = Gravity.CENTER, anim: Int = 0
     ) {
         val bundle = Bundle()
         bundle.putInt(DIALOG_WIDTH_TYPE, widthType)

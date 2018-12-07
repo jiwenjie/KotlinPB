@@ -7,7 +7,6 @@ import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
-import java.lang.IllegalStateException
 import java.util.concurrent.TimeUnit
 
 /**
@@ -30,11 +29,11 @@ object RetrofitManager {
             throw IllegalStateException("Empty url and call setBaseUrl first before get an instance of retrofit")
 
         Retrofit.Builder()
-            .baseUrl(BASE_URL)
-            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-            .addConverterFactory(GsonConverterFactory.create())
-            .client(genericOkClient())
-            .build()
+                .baseUrl(BASE_URL)
+                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create())
+                .client(genericOkClient())
+                .build()
     }
 
     fun setBaseUrl(url: String) {
@@ -49,10 +48,10 @@ object RetrofitManager {
         httpLoggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
 
         return OkHttpClient.Builder()
-            .connectTimeout(CONN_TIME.toLong(), TimeUnit.SECONDS)
-            .readTimeout(READ_TIME.toLong(), TimeUnit.SECONDS)
-            .writeTimeout(WRITE_TIME.toLong(), TimeUnit.SECONDS)
-            .addInterceptor(httpLoggingInterceptor)
-            .build()
+                .connectTimeout(CONN_TIME.toLong(), TimeUnit.SECONDS)
+                .readTimeout(READ_TIME.toLong(), TimeUnit.SECONDS)
+                .writeTimeout(WRITE_TIME.toLong(), TimeUnit.SECONDS)
+                .addInterceptor(httpLoggingInterceptor)
+                .build()
     }
 }

@@ -22,7 +22,7 @@ import android.view.ViewGroup
  * @see BaseRecyclerAdapter.getConvertType 支持多布局
  */
 abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayList<T>? = null) :
-    RecyclerView.Adapter<BaseRecyclerAdapter.BaseRecyclerHolder>() {
+        RecyclerView.Adapter<BaseRecyclerAdapter.BaseRecyclerHolder>() {
 
     private val mHeaderViews: SparseArray<View> = SparseArray()
     private val mFooterViews: SparseArray<View> = SparseArray()
@@ -54,9 +54,9 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): BaseRecyclerHolder =
-        if (haveHeader() && mHeaderViews.get(viewType) != null) BaseRecyclerHolder(mHeaderViews.get(viewType))
-        else if (haveFooter() && mFooterViews.get(viewType) != null) BaseRecyclerHolder(mFooterViews.get(viewType))
-        else BaseRecyclerHolder(mInflater.inflate(getAdapterLayoutId(viewType), parent, false))
+            if (haveHeader() && mHeaderViews.get(viewType) != null) BaseRecyclerHolder(mHeaderViews.get(viewType))
+            else if (haveFooter() && mFooterViews.get(viewType) != null) BaseRecyclerHolder(mFooterViews.get(viewType))
+            else BaseRecyclerHolder(mInflater.inflate(getAdapterLayoutId(viewType), parent, false))
 
     abstract fun getAdapterLayoutId(viewType: Int): Int
 
@@ -141,11 +141,11 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
     }
 
     override fun getItemViewType(position: Int): Int =
-        when {
-            isHeader(position) -> mHeaderViews.keyAt(position)
-            isFooter(position) -> mFooterViews.keyAt(position - getDataSize() - getHeaderSize())
-            else -> getConvertType(position)
-        }
+            when {
+                isHeader(position) -> mHeaderViews.keyAt(position)
+                isFooter(position) -> mFooterViews.keyAt(position - getDataSize() - getHeaderSize())
+                else -> getConvertType(position)
+            }
 
     protected open fun getConvertType(position: Int): Int = 0
 
@@ -228,8 +228,8 @@ abstract class BaseRecyclerAdapter<T : Any>(context: Context, dataList: ArrayLis
         if (lm is GridLayoutManager)
             lm.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
                 override fun getSpanSize(position: Int): Int =
-                    if (isHeader(position) || isFooter(position)) lm.spanCount
-                    else 1
+                        if (isHeader(position) || isFooter(position)) lm.spanCount
+                        else 1
             }
     }
 

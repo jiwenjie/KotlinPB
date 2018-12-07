@@ -19,5 +19,5 @@ class BaseFragmentPagerAdapter(fm: FragmentManager, fragments: ArrayList<out Fra
     override fun getCount(): Int = mTitles.size
 
     override fun getPageTitle(position: Int): CharSequence? =
-        if (mTitles.isEmpty()) super.getPageTitle(position) else mTitles[position]
+            if (mTitles.isEmpty()) super.getPageTitle(position) else mTitles[position]
 }
