@@ -39,7 +39,7 @@ class NewsFragment : BaseFragment() {
 
         /* BaseRecyclerAdapter Demo */
         mAdapter = object : BaseRecyclerAdapter<NewsData>(activity!!) {
-            override fun getAdapterLayoutId(): Int = R.layout.recycler_news_item
+            override fun getAdapterLayoutId(viewType: Int): Int = R.layout.recycler_news_item
 
             override fun convertView(itemView: View, t: NewsData, position: Int) {
                 itemView.news_title.text = t.title
@@ -55,21 +55,21 @@ class NewsFragment : BaseFragment() {
 
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s))
                     Glide.with(activity!!)
-                        .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
-                        .load(t.thumbnail_pic_s)
-                        .into(itemView.thumbnail_pic_1)
+                            .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
+                            .load(t.thumbnail_pic_s)
+                            .into(itemView.thumbnail_pic_1)
 
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s02))
                     Glide.with(activity!!)
-                        .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
-                        .load(t.thumbnail_pic_s02)
-                        .into(itemView.thumbnail_pic_2)
+                            .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
+                            .load(t.thumbnail_pic_s02)
+                            .into(itemView.thumbnail_pic_2)
 
                 if (!TextUtils.isEmpty(t.thumbnail_pic_s03))
                     Glide.with(activity!!)
-                        .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
-                        .load(t.thumbnail_pic_s03)
-                        .into(itemView.thumbnail_pic_3)
+                            .applyDefaultRequestOptions(RequestOptions().centerCrop().placeholder(R.mipmap.ic_launcher))
+                            .load(t.thumbnail_pic_s03)
+                            .into(itemView.thumbnail_pic_3)
             }
         }
         mAdapter.updateSelectItem(0)
@@ -77,10 +77,10 @@ class NewsFragment : BaseFragment() {
         news_list.layoutManager = LinearLayoutManager(activity!!, LinearLayoutManager.VERTICAL, false)
         news_list.adapter = mAdapter
         news_refresh.setColorSchemeResources(
-            R.color.colorPrimary,
-            R.color.colorPrimaryDark,
-            R.color.colorAccent,
-            R.color.colorDracula
+                R.color.colorPrimary,
+                R.color.colorPrimaryDark,
+                R.color.colorAccent,
+                R.color.colorDracula
         )
 
         if (!TextUtils.isEmpty(mType)) requestNews(mType!!)
@@ -89,18 +89,18 @@ class NewsFragment : BaseFragment() {
     private fun requestNews(type: String, refreshable: Boolean = false) {
         news_refresh.isRefreshing = true
         mNewsDisposable = RetrofitManager.mRetrofit
-            .create(RetrofitApi::class.java)
-            .getNews(type, Constant.NEWS_APP_KEY)
-            .map { t -> t.result.data }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe({ t ->
-                if (!t.isEmpty()) {
-                    mAdapter.updateAdapterData(t as ArrayList<NewsData>)
-                    if (refreshable) ToastUtils.showToast(activity!!, "更新数据成功")
-                    news_refresh.isRefreshing = false
-                }
-            }, { t -> LogUtils.e(t.message) })
+                .create(RetrofitApi::class.java)
+                .getNews(type, Constant.NEWS_APP_KEY)
+                .map { t -> t.result.data }
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe({ t ->
+                    if (!t.isEmpty()) {
+                        mAdapter.updateAdapterData(t as ArrayList<NewsData>)
+                        if (refreshable) ToastUtils.showToast(activity!!, "更新数据成功")
+                        news_refresh.isRefreshing = false
+                    }
+                }, { t -> LogUtils.e(t.message) })
     }
 
     override fun setListener() {

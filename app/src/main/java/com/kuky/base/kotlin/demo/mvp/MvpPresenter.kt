@@ -20,12 +20,12 @@ class MvpPresenter(mView: IMvpView) : IMvpPresenter, BaseMvpPresenter<IMvpView>(
 
         mCountDisposable =
                 Observable.timer(500, TimeUnit.MILLISECONDS)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe {
-                        mView!!.setResult(mModel.getChangeList())
-                        mView!!.dismissLoading()
-                    }
+                        .subscribeOn(Schedulers.io())
+                        .observeOn(AndroidSchedulers.mainThread())
+                        .subscribe {
+                            mView!!.setResult(mModel.getChangeList())
+                            mView!!.dismissLoading()
+                        }
     }
 
     override fun onDestroy() {

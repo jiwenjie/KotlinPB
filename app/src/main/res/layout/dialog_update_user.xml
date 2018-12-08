@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/update_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/update_data"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <EditText
+        android:id="@+id/update_user_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/update_id_hint"
+        android:inputType="number"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/update_title"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/update_user_id" />
+
+    <EditText
+        android:id="@+id/update_user_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/update_name_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/update_user_id"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/update_user_name" />
+
+    <EditText
+        android:id="@+id/update_user_phone"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/update_phone_hint"
+        android:inputType="phone"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/update_user_name"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/update_user_phone" />
+
+    <EditText
+        android:id="@+id/update_user_province"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/update_province_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/update_user_phone"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/update_user_province" />
+
+    <EditText
+        android:id="@+id/update_user_street"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/update_street_hint"
+        android:inputType="text"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintTop_toBottomOf="@id/update_user_province"
+        tools:ignore="Autofill" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/update_user_street" />
+
+    <TextView
+        android:id="@+id/update_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/cancel"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toStartOf="@id/update_ok"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/update_user_street" />
+
+    <View
+        android:layout_width="0.1dp"
+        android:layout_height="20dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@id/update_cancel"
+        app:layout_constraintEnd_toStartOf="@id/update_ok"
+        app:layout_constraintStart_toEndOf="@id/update_cancel"
+        app:layout_constraintTop_toTopOf="@id/update_cancel" />
+
+    <TextView
+        android:id="@+id/update_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/update_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/update_cancel" />
+</android.support.constraint.ConstraintLayout>

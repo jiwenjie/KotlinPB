@@ -10,7 +10,6 @@ import io.reactivex.functions.Consumer
 import io.reactivex.internal.functions.Functions
 import io.reactivex.schedulers.Schedulers
 import io.reactivex.subjects.PublishSubject
-import java.lang.IllegalStateException
 
 /**
  * @author kuky.
@@ -29,13 +28,13 @@ class RxBus private constructor() {
     private fun <T> doSubscribe(type: Class<T>, next: Consumer<T>? = null,
                                 error: Consumer<Throwable>? = null,
                                 complete: Action? = null): Disposable =
-        getObserver(type)
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(
-                next ?: Functions.emptyConsumer(),
-                error ?: Functions.ON_ERROR_MISSING,
-                complete ?: Functions.EMPTY_ACTION)
+            getObserver(type)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(
+                            next ?: Functions.emptyConsumer(),
+                            error ?: Functions.ON_ERROR_MISSING,
+                            complete ?: Functions.EMPTY_ACTION)
 
     private fun addSubscription(any: Any, disposable: Disposable) {
         val key = any.javaClass.simpleName
@@ -51,7 +50,7 @@ class RxBus private constructor() {
 
     fun <T> register(any: Any, type: Class<T>, next: Consumer<T>? = null,
                      error: Consumer<Throwable>? = null, complete: Action? = null) =
-        addSubscription(any, doSubscribe(type, next, error, complete))
+            addSubscription(any, doSubscribe(type, next, error, complete))
 
     fun register(any: Any, disposable: Disposable) = this.addSubscription(any, disposable)
 

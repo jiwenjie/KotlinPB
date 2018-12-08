@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@android:color/white"
+    android:padding="12dp">
+
+    <TextView
+        android:id="@+id/delete_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:padding="8dp"
+        android:text="@string/delete_data"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark" />
+
+    <EditText
+        android:id="@+id/delete_user_id"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="12dp"
+        android:background="@android:color/white"
+        android:ellipsize="end"
+        android:hint="@string/delete_id_hint"
+        android:inputType="number"
+        android:padding="4dp"
+        android:singleLine="true"
+        android:textColor="@color/colorDracula"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toStartOf="@id/delete_all"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_title"
+        tools:ignore="Autofill" />
+
+    <CheckBox
+        android:id="@+id/delete_all"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/all"
+        app:layout_constraintBaseline_toBaselineOf="@id/delete_user_id"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/delete_user_id" />
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="4dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintTop_toBottomOf="@id/delete_user_id" />
+
+    <TextView
+        android:id="@+id/delete_cancel"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/cancel"
+        android:textAllCaps="true"
+        android:textColor="@android:color/holo_red_dark"
+        app:layout_constraintEnd_toStartOf="@id/delete_ok"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/delete_user_id" />
+
+    <View
+        android:layout_width="0.1dp"
+        android:layout_height="20dp"
+        android:background="@color/colorPrimaryDark"
+        app:layout_constraintBottom_toBottomOf="@id/delete_cancel"
+        app:layout_constraintEnd_toStartOf="@id/delete_ok"
+        app:layout_constraintStart_toEndOf="@id/delete_cancel"
+        app:layout_constraintTop_toTopOf="@id/delete_cancel" />
+
+    <TextView
+        android:id="@+id/delete_ok"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
+        android:gravity="center"
+        android:padding="8dp"
+        android:singleLine="true"
+        android:text="@string/ok"
+        android:textAllCaps="true"
+        android:textColor="@color/colorDracula"
+        app:layout_constraintBaseline_toBaselineOf="@id/delete_cancel"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/delete_cancel" />
+
+</android.support.constraint.ConstraintLayout>

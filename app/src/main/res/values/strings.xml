@@ -1,4 +1,32 @@
 <resources>
     <string name="app_name">KotlinPB</string>
     <string name="send_event">Send Event</string>
+    <string name="insert">Insert</string>
+    <string name="update">Update</string>
+    <string name="delete">Delete</string>
+    <string name="query">Query</string>
+    <string name="single">Single</string>
+
+    <string name="ok">OK</string>
+    <string name="cancel">Cancel</string>
+    <string name="all">All</string>
+
+    <string name="input_name_hint">Input your name here</string>
+    <string name="input_phone_hint">Input your phone here</string>
+    <string name="input_province_hint">Input your province here</string>
+    <string name="input_street_hint">Input your street here</string>
+
+    <string name="update_id_hint">Input update id here</string>
+    <string name="update_name_hint">Input update name here</string>
+    <string name="update_phone_hint">Input update phone number here</string>
+    <string name="update_province_hint">Input update province here</string>
+    <string name="update_street_hint">Input update street here</string>
+
+    <string name="delete_id_hint">Input user id deleted here</string>
+    <string name="query_id_hint">Input user id here</string>
+
+    <string name="insert_data">insert data</string>
+    <string name="delete_data">delete data</string>
+    <string name="update_data">update data</string>
+    <string name="query_data">query data</string>
 </resources>

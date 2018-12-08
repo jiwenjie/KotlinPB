@@ -12,7 +12,7 @@ import com.kuky.base.android.kotlin.R
  * @description
  */
 abstract class BaseDialog(context: Context, themeId: Int = R.style.AlertDialogStyle) :
-    Dialog(context, themeId) {
+        Dialog(context, themeId) {
 
     protected val mContext = context
     private val mInflater = LayoutInflater.from(mContext)

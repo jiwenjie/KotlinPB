@@ -17,6 +17,11 @@ abstract class BaseDialogFragment : DialogFragment() {
     private var mHeight: Int = WindowManager.LayoutParams.WRAP_CONTENT
     private var mGravity: Int = Gravity.CENTER
     private var mAnimation: Int = 0
+    private var mOnDismissListener: (() -> Unit)? = null
+
+    fun setOnDismissListener(l: (() -> Unit)?) {
+        this.mOnDismissListener = l
+    }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         dialog.window?.requestFeature(Window.FEATURE_NO_TITLE)
@@ -37,9 +42,9 @@ abstract class BaseDialogFragment : DialogFragment() {
 
     /* put your height, width, gravity, animation param here */
     fun putExtraParam(
-        widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-        heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
-        gravity: Int = Gravity.CENTER, anim: Int = 0
+            widthType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+            heightType: Int = WindowManager.LayoutParams.WRAP_CONTENT,
+            gravity: Int = Gravity.CENTER, anim: Int = 0
     ) {
         val bundle = Bundle()
         bundle.putInt(DIALOG_WIDTH_TYPE, widthType)
@@ -47,6 +52,11 @@ abstract class BaseDialogFragment : DialogFragment() {
         bundle.putInt(DIALOG_GRAVITY, gravity)
         bundle.putInt(DIALOG_ANIMATION, anim)
         this.arguments = bundle
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        mOnDismissListener?.invoke()
     }
 
     override fun onStart() {

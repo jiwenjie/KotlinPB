@@ -13,7 +13,6 @@ import com.kuky.base.android.kotlin.baseutils.ToastUtils
 import com.kuky.base.android.kotlin.baseviews.BaseActivity
 import com.kuky.base.kotlin.demo.rx.RxBusActivity
 import io.reactivex.functions.Consumer
-import io.reactivex.schedulers.Schedulers
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.list_activity_item.view.*
 import kotlin.random.Random
@@ -21,9 +20,15 @@ import kotlin.random.Random
 /* BaseActivity Demo */
 class MainActivity : BaseActivity() {
 
-    private val mActivities = arrayListOf("mvp.MvpActivity", "rx.RxBusActivity", "vp.VpActivity",
-            "empty.NonActivity", "empty.RxResultShowActivity", "empty.JustTestActivity",
-            "empty.NotClickActivity", "empty.EmptyActivity")
+    private val mActivities = arrayListOf(
+            "mvp.MvpActivity",
+            "rx.RxBusActivity",
+            "vp.VpActivity",
+            "room.RoomActivity",
+            "empty.NonActivity",
+            "empty.NotClickActivity",
+            "empty.EmptyActivity"
+    )
 
     private lateinit var mAdapter: ActivityAdapter
 
@@ -41,7 +46,11 @@ class MainActivity : BaseActivity() {
                         val clazz = Class.forName("$packageName.${mAdapter.getAdapterDataList()[position]}")
                         startActivity(clazz.newInstance()::class.java)
                     } catch (e: ActivityNotFoundException) {
-                        ToastUtils.showToast(this@MainActivity, "Activity Not Found! and not click Activities below empty package")
+                        ToastUtils.showToast(
+                                this@MainActivity, "Activity Not Found! and not click Activities below empty package"
+                        )
+                    } catch (e: ClassNotFoundException) {
+                        LogUtils.e("Class not found")
                     }
                 }
     }
